@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư Tỏ Tình</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fde6ef;
+        font-family: Arial;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* TRÁI TIM NỀN */
+    .heart {
+        position: absolute;
+        font-size: 24px;
+        color: rgba(255, 105, 180, 0.25);
+        pointer-events: none; /* tránh che click */
+        user-select: none;
+    }
+
+    /* KHUNG PHONG BÌ */
+    .envelope {
+        width: min(80vw, 420px);
+        height: min(50vw, 260px);
+        background: #ee8eb6;
+        position: relative;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: 0.4s;
+        z-index: 10;
+    }
+
+    /* NẮP THƯ TAM GIÁC LỚN */
+    .envelope:before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 70%;
+        background: #ec7099;
+        clip-path: polygon(50% 100%, 100% 0, 0 0);
+        transition: 0.5s ease;
+    }
+
+    /* BỨC THƯ BÊN TRONG */
+    .letter {
+    width: 92%;                /* rộng hơn */
+    height: 75%;               /* cao hơn */
+    background: white;
+    position: absolute;
+    left: 4%;                  /* cân lại 2 bên */
+    top: 25%;                  /* đặt cao hơn */
+    transform: translateY(45px);
+    opacity: 0;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: clamp(14px, 3vw, 22px);
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    transition: 0.55s ease;
+}
+
+
+    /* KHI MỞ THƯ */
+    .open .letter {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+
+    .open:before {
+        transform-origin: top;
+        transform: rotateX(180deg);
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Tạo trái tim rải rác nền -->
+<script>
+    for (let i = 0; i < 22; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
+
+        const size = 18 + Math.random() * 18;
+        heart.style.fontSize = size + "px";
+
+        document.body.appendChild(heart);
+    }
+</script>
+
+<!-- PHONG BÌ -->
+<div class="envelope" id="env">
+    <div class="letter">
+        Dear beo.
+        đây là quà Noel anh muốn gửi tặng em 
+     anh là một  người không giỏi bộc lộ cảm xúc,
+nhưng mà thực sự anh thích em rất nhiều. Mong rằng khoảng thời gian sắp tới sẽ được đồng hành cùng em nhiều hơn em nhé 
+ yêu em 💌
+    </div>
+</div>
+
+<script>
+    document.getElementById("env").addEventListener("click", () => {
+        document.getElementById("env").classList.toggle("open");
+    });
+</script>
+
+</body>
+</html>
